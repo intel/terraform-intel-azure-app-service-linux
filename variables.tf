@@ -114,8 +114,8 @@ variable "key_vault_reference_identity" {
 
 variable "settings" {
   description = "Variable used to pass in a list of settings to be used in the Linux Web App Service."
-  default     = false
-  type        = any
+  default = {}
+  type = any
 }
 
 # variable "logs" {
@@ -127,7 +127,7 @@ variable "settings" {
 variable "virtual_network_subnet_id" {
   description = "The subnet id which will be used by this Web App for regional virtual network integration."
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "storage_key_vault_secret_id" {
