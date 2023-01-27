@@ -114,8 +114,8 @@ variable "key_vault_reference_identity" {
 
 variable "settings" {
   description = "Variable used to pass in a list of settings to be used in the Linux Web App Service."
-  default = {}
-  type = any
+  default     = {}
+  type        = any
 }
 
 # variable "logs" {
