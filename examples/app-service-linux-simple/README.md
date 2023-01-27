@@ -1,27 +1,49 @@
 <p align="center">
-  <img src="https://github.com/OTCShare2/terraform-intel-hashicorp/blob/main/images/logo-classicblue-800px.png?raw=true" alt="Intel Logo" width="250"/>
+  <img src="https://github.com/intel/terraform-intel-hashicorp/blob/main/images/logo-classicblue-800px.png?raw=true" alt="Intel Logo" width="250"/>
 </p>
 
 # Intel Cloud Optimization Modules for Terraform
 
 © Copyright 2022, Intel Corporation
 
-## Add Module Name Here
+## Intel Cloud Optimization Module - Azure App Service Linux
 
-Add Module description here
+Simple usage of the module
 
 ## Usage
 
 **See examples folder for complete examples.**
 
-variables.tf
-
-```hcl
-<EXAMPLE>
-```
 main.tf
 ```hcl
-<EXAMPLE>
+module "intel-optimized-service-plan" {
+  source              = "intel/azure-app-service-plan/intel"
+  service_plan_name   = "intel-linux-service-plan-02"
+  resource_group_name = "terraform-testing-rg"
+  tags = {
+    "Owner"    = "Intel.Cloud.Modules@intel.com"
+    "Duration" = "4"
+  }
+}
+
+module "linux-app-service" {
+  source              = "intel/azure-app-service-linux/intel"
+  app_name            = "intel-linux-app-service-02"
+  resource_group_name = "terraform-testing-rg"
+  service_plan_id     = module.intel-optimized-service-plan.id
+  tags = {
+    "Owner"    = "Intel.Cloud.Modules@intel.com"
+    "Duration" = "4"
+  }
+  #Site_config is required 
+  settings = {
+    site_config = {
+      application_stack = {
+        node_version = "18-lts"
+      }
+    }
+  }
+}
 ```
 
 
@@ -36,4 +58,4 @@ terraform plan
 terraform apply 
 ```
 ## Considerations
-Add additional considerations here
+settings site_config is required https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_web_app#:~:text=An%20application_stack%20block%20supports%20the%20following%3A

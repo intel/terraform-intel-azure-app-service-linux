@@ -1,6 +1,6 @@
 
 module "intel-optimized-service-plan" {
-  source              = "github.com/OTCShare2/terraform-intel-azure-app-service-plan.git"
+  source              = "intel/azure-app-service-plan/intel"
   service_plan_name   = "intel-linux-service-plan-02"
   resource_group_name = "terraform-testing-rg"
   tags = {
@@ -10,7 +10,7 @@ module "intel-optimized-service-plan" {
 }
 
 module "linux-app-service" {
-  source              = "../.."
+  source              = "intel/azure-app-service-linux/intel"
   app_name            = "intel-linux-app-service-02"
   resource_group_name = "terraform-testing-rg"
   service_plan_id     = module.intel-optimized-service-plan.id

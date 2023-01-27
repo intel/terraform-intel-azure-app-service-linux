@@ -40,7 +40,7 @@ output "tags" {
 
 output "custom_domain_verification_id" {
   value       = module.linux-app-service.custom_domain_verification_id
-  sensitive = true
+  sensitive   = true
   description = "The ID of the custom domain verification"
 }
 
@@ -76,7 +76,7 @@ output "possible_outbound_ip_address_list" {
 
 output "site_credential" {
   value       = module.linux-app-service.site_credential
-  sensitive = true
+  sensitive   = true
   description = "The site credential of the Linux App Service"
 }
 
