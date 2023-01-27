@@ -14,6 +14,24 @@ Module usage for creating an Azure App Service Linux Web App
 
 **See examples folder for complete examples.**
 
+By default, for the Linux App Web you only have to pass four variables
+
+```hcl
+app_name
+resource_group_name
+service_plan_id
+settings = {
+    site_config = {
+      application_stack = {
+        node_version = "18-lts"
+      }
+    }
+}
+
+```
+
+An app service web app needs a App Service Plan, for that look at the Intel App Service Plan module.
+
 main.tf
 
 ```hcl
@@ -21,9 +39,6 @@ module "intel-optimized-service-plan" {
   source              = "intel/azure-app-service-plan/intel"
   service_plan_name   = "intel-linux-service-plan-02"
   resource_group_name = "terraform-testing-rg"
-  tags = {
-    "Owner"    = "Intel.Cloud.Modules@intel.com"
-    "Duration" = "4"
   }
 }
 
